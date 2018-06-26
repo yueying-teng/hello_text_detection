@@ -1,0 +1,30 @@
+# From tensorflow/models/research/
+gcloud ml-engine jobs submit training hello_detection_train_`date +%s` \
+    --runtime-version 1.7 \
+    --job-dir=gs://hello-text-detection-bucket/train \
+    --packages dist/object_detection-0.1.tar.gz,slim/dist/slim-0.1.tar.gz \
+    --module-name object_detection.train \
+    --region us-east1 \
+    --config object_detection/samples/cloud/cloud.yml \
+    -- \
+    --train_dir=gs://hello-text-detection-bucket/train \
+    --pipeline_config_path=gs://hello-text-detection-bucket/data/faster_rcnn_resnet101_coco.config
+
+
+# From tensorflow/models/research/
+gcloud ml-engine jobs submit training hello_detection_eval_`date +%s` \
+    --runtime-version 1.7 \
+    --job-dir=gs://hello-text-detection-bucket/train \
+    --packages dist/object_detection-0.1.tar.gz,slim/dist/slim-0.1.tar.gz,pycocotools/pycocotools-2.0.tar.gz \
+    --module-name object_detection.eval \
+    --region us-east1 \
+    --scale-tier BASIC_GPU \
+    -- \
+    --checkpoint_dir=gs://hello-text-detection-bucket/train \
+    --eval_dir=gs://hello-text-detection-bucket/eval \
+    --pipeline_config_path=gs://hello-text-detection-bucket/data/faster_rcnn_resnet101_coco.config
+
+
+# region aisa-east1
+# cloud.yml has runtimeVersion too. make sure the two match ?
+# runtime-version 1.2
