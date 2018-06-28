@@ -1,10 +1,10 @@
 # hello_text_object_detection
 detect locatin of hello in the image 
 
-# tensorflow object detection api 
+### tensorflow object detection api 
 [installation](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md)
 
-# data preparation 
+### data preparation 
 bounding box label generatd using [LabelBox](https://app.labelbox.com/projects)
 
 LabelBox coordinates origin is differnet from that required by the script which convert label csv to TFRecord.
@@ -18,7 +18,7 @@ convert train.csv and test.csv to train.record and test.record using [this scrip
 
 create [hello_label_map](https://github.com/yueying-teng/hello_text_object_detection/blob/master/train/hello_label_map.pbtxt)
 
-# training 
+### training 
 is done on google cloud ml engine by following [this](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/running_pets.md)
 
 files needed are 
@@ -29,8 +29,8 @@ files needed are
 
 tried to train using faster_rcnn_resnet101_coco, but keep getting this error message - **The replica master 0 exited with a non-zero status of 1. Termination reason: Error.**
 
-# model export 
+### model export 
 download mdoel checkpoint files to local and use [this script](https://github.com/yueying-teng/hello_text_object_detection/blob/master/train/train_eval_script) to export the model
 
-# demo 
+### demo 
 can be found [here](https://github.com/yueying-teng/hello_text_object_detection/blob/master/hello_text_object_detection.ipynb)
