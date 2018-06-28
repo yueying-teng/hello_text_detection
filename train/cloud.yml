@@ -1,0 +1,21 @@
+trainingInput:
+  runtimeVersion: "1.7"
+  scaleTier: CUSTOM
+  masterType: standard_gpu
+  workerCount: 5
+  workerType: standard_gpu
+  parameterServerCount: 3
+  parameterServerType: standard
+
+
+# trainingInput:
+#   runtimeVersion: "1.5"
+#   scaleTier: CUSTOM
+#   masterType: complex_model_m_gpu
+#   workerCount: 5
+#   workerType: complex_model_m_gpu
+#   parameterServerCount: 3
+#   parameterServerType: standard
+
+
+
