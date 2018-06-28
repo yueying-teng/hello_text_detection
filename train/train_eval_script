@@ -8,7 +8,7 @@ gcloud ml-engine jobs submit training hello_detection_train_`date +%s` \
     --config object_detection/samples/cloud/cloud.yml \
     -- \
     --train_dir=gs://hello-text-detection-bucket/train \
-    --pipeline_config_path=gs://hello-text-detection-bucket/data/faster_rcnn_resnet101_coco.config
+    --pipeline_config_path=gs://hello-text-detection-bucket/data/ssd_mobilenet_v2_coco.config
 
 
 # From tensorflow/models/research/
@@ -22,9 +22,22 @@ gcloud ml-engine jobs submit training hello_detection_eval_`date +%s` \
     -- \
     --checkpoint_dir=gs://hello-text-detection-bucket/train \
     --eval_dir=gs://hello-text-detection-bucket/eval \
-    --pipeline_config_path=gs://hello-text-detection-bucket/data/faster_rcnn_resnet101_coco.config
+    --pipeline_config_path=gs://hello-text-detection-bucket/data/ssd_mobilenet_v2_coco.config
 
 
 # region aisa-east1
-# cloud.yml has runtimeVersion too. make sure the two match ?
-# runtime-version 1.2
+# cloud.yml has runtimeVersion too. make sure that matches the runtimeVersion here 
+# runtime-version 1.2, 1.5, 1.7
+# ssd_mobilenet_v2_coco.config
+# faster_rcnn_resnet101_coco.config
+
+
+# to export trained model
+
+# Run this script from tensorflow/models/research:
+python object_detection/export_inference_graph.py \
+    --input_type image_tensor \
+    --pipeline_config_path /Users/yueying.teng/Documents/text_object_detection/train/ssd_mobilenet_v2_coco.config \
+    --trained_checkpoint_prefix /Users/yueying.teng/Documents/text_object_detection/saved_checkpoint_from_gcloud/model.ckpt-200001 \
+    --output_directory /Users/yueying.teng/Documents/text_object_detection/exported_model
+
