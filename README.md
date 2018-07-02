@@ -34,3 +34,5 @@ download mdoel checkpoint files to local and use [this script](https://github.co
 
 ### demo 
 can be found [here](https://github.com/yueying-teng/hello_text_object_detection/blob/master/hello_text_object_detection.ipynb)
+
+![alt text](https://github.com/yueying-teng/hello_text_object_detection/blob/master/hello_detection.png)
